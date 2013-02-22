@@ -1,0 +1,18 @@
+.span{style:"clear:both;"}
+- @blocks.each do |block|
+  - if @reading_style == "side_by_side"
+    .span5
+      .hovercraft_original
+        =block.original.html_safe
+    .span5
+      .hovercraft_translation
+        =block.translation.html_safe
+    .span{style:"clear:both;"}
+  - elsif @reading_style == "flow"
+    .centered
+      .hovercraft_original{:"data-original-block" => "#{block.id}"}
+        =block.original.html_safe
+      .hovercraft_translation.highlight{:"data-translation-block" => "#{block.id}", :style => "display:none;"}
+        =block.translation.html_safe
+%h3
+  =link_to("Original Article", @article.url)
